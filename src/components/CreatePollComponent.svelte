@@ -33,7 +33,7 @@
 
       if (response.ok) {
         const data = await response.json();
-        alert("Poll created successfully with ID: " + data.pollId);
+        alert("Poll created successfully with ID: " + data.pollId + ". Now refresh the page to vote.");
       } else {
         console.error("Error creating poll:", response.statusText);
         alert("Failed to create poll");
@@ -45,11 +45,9 @@
   }
 </script>
 
-<h1 class="app-title">PollApp</h1>
+<h1 class="app-title">Create a New Poll</h1>
 
 <div class="poll-container">
-  <h2>Create a New Poll</h2>
-
   <form class="poll-form" on:submit|preventDefault={submitPoll}>
     <div class="form-group">
       <label for="pollQuestion">Poll Question:</label>
@@ -89,10 +87,11 @@
   }
 
   /* Title and Section Headers */
-  h2 {
-    font-size: 28px;
-    margin-bottom: 20px;
+  h1 {
+    font-size: 36px;
+    text-align: center;
     color: #2f3a48;
+    margin-bottom: 40px;
   }
 
   h3 {
