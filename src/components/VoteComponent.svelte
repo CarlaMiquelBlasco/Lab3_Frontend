@@ -57,7 +57,7 @@
       if (response.ok) {
         // Increment the votes locally after a successful vote
         option.upvote = (option.upvote || 0) + 1;
-        alert(`Vote cast successfully! There are now ${option.upvote} votes for ${option.caption}.`);
+        alert(`Vote cast successfully! There are now ${option.upvote} votes for ${option.caption}. Refresh the page to see the votes.`);
       } else {
         console.error("Failed to cast vote:", response.statusText);
       }
@@ -67,8 +67,8 @@
   }
 
 </script>
-<h2>Select a Poll</h2>
 
+<h2>Select a Poll</h2>
 <div>
   <label for="pollSelect">Choose a poll:</label>
   <select id="pollSelect" bind:value={selectedPollId} on:change={() => fetchSelectedPoll(selectedPollId)}>
@@ -80,14 +80,14 @@
 </div>
 
 {#if selectedPoll}
-  <h3>Poll #{selectedPoll.pollId}</h3>
+  <h3>Poll id: {selectedPoll.pollId}</h3>
   <blockquote>{selectedPoll.question}</blockquote>
   <ul>
     {#each selectedPoll.voteOptions as option}
       <li>
         <div class="option">{option.caption}</div>
         <div class="buttons">
-          <button class="upvote" on:click={() => upvote(option)}>upvote</button>
+          <button class="upvote" on:click={() => upvote(option)}>vote</button>
         </div>
         <span>{option.upvote} Votes</span>
       </li>
@@ -109,18 +109,6 @@
     text-align: left;
     color: #2f3a48;
     margin-bottom: 40px;
-  }
-
-  .poll-container {
-    border: 5px solid #fdeff5;
-    border-radius: 5px;
-    padding: 15px;
-    margin: 5px 0;
-    max-width: 1000px;
-    width: 100%;
-    margin: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    text-align: center;
   }
 
   blockquote {
@@ -160,7 +148,7 @@
     gap: 5px; /* Decrease this value to bring the buttons closer */
   }
 
-  .upvote, .downvote {
+  .upvote{
     padding: 10px 15px;
     border: none;
     border-radius: 5px;
@@ -169,17 +157,7 @@
   }
 
   .upvote {
-    background-color: #8bc34a;
+    background-color: #f69eca;
     color: white;
-  }
-
-  .downvote {
-    background-color: #f44336;
-    color: white;
-  }
-
-  .votes {
-    font-weight: bold;
-    text-align: right;
   }
 </style>
